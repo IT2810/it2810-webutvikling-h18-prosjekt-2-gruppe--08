@@ -13,13 +13,13 @@ class Tabs extends Component {
                 <div className="tab1" onClick={() => this.props.onTabSelect(1)}>
                     Kunst 1
                 </div>
-                <div className="tab2">
+                <div className="tab2" onClick={() => this.props.onTabSelect(2)}>
                     Kunst 2
                 </div>
-                <div className="tab3">
+                <div className="tab3" onClick={() => this.props.onTabSelect(3)}>
                     Kunst 3
                 </div>
-                <div className="tab4">
+                <div className="tab4" onClick={() => this.props.onTabSelect(4)}>
                     Kunst 4
                 </div>
             </div>

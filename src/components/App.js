@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+//dlcl
 // Component
 import Header from './header';
 import Footer from './footer';
@@ -31,7 +31,7 @@ class App extends Component {
         axios.get("/db.json")
           .then((response) => {
               this.setState({
-                  activeText:response.data.home.picture.text
+                  activeText: response.data.home.picture.text
               });
           })
           .catch(function (error) {
