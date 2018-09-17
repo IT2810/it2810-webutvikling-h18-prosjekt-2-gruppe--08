@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//dlcl
+
 // Component
 import Header from './header';
 import Footer from './footer';
@@ -25,18 +25,29 @@ class App extends Component {
 
     onTabClick(tabNumber){
         console.log(tabNumber);
-        this.setState({
-            tabNumber: tabNumber
-        })
-        axios.get("/db.json")
-          .then((response) => {
-              this.setState({
-                  activeText: response.data.home.picture.text
-              });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        if(this.state.tabNumber != tabNumber) {
+            this.setState({
+                tabNumber: tabNumber
+            })
+            axios.get("/content/texts/lyrics.json")
+            .then((response) => {
+                if (tabNumber == 1) {
+                    this.setState({
+                        activeText: response.data.lyrics.texts[0].text
+
+                    });
+                } else if (tabNumber == 2) {
+                    this.setState({
+                        activeText: response.data.lyrics.texts[1].text
+                    });
+                }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+
 
     }
 

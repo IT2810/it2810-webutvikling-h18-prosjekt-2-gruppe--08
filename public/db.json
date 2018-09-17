@@ -1,19 +1,17 @@
 {
     "home": {
-        "picture":
+        "picture": [
             {
                 "id": "1",
                 "image": "Eirik.JPG",
                 "text": "sjhdkkcpzsldfkowkjdsldfcv"
+            },
+            {
+                "id": "2",
+                "image": "Eirik.JPG",
+                "text": "hsdbjnvkmx"
             }
-
+        ]
     }
-
-
-
-
-
-
-
 
 }
