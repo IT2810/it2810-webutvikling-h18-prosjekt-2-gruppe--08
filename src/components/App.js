@@ -15,44 +15,104 @@ class App extends Component {
         super(props);
 
         this.onTabClick = this.onTabClick.bind(this)
+        this.onCategoryClick = this.onCategoryClick.bind(this)
 
         this.state = {
-            tabNumber:0,
-            activePicture:"",
-            activeText:["", "", "", ""],
-            activeAudio:""
+            tabNumber: 0,
+
+            activePicture: ["", "", "", ""],
+            activeText: ["", "", "", ""],
+            activeAudio: ["", "", "", ""],
+
+            // [picture, text, audio]
+            activeCategories: ["animal", "lyrics", ""]
+
         }
+
     }
 
     onTabClick(tabNumber){
         //console.log(tabNumber);
-        if(this.state.tabNumber != tabNumber) {
-            this.setState({
-                tabNumber: tabNumber
-            })
+        // if(this.state.tabNumber !== tabNumber) {
+        this.setState({
+            tabNumber: tabNumber
+        })
 
-            if (this.state.activeText[tabNumber-1] == "") {
-              axios.get("/content/texts/lyrics.json")
-              .then((response) => {
-                  console.log("henter tekst fra tab" + tabNumber);
-                  let updatedTexts = this.state.activeText
-                  updatedTexts[tabNumber-1] = response.data[tabNumber-1].text
-                  this.setState({
-                    activeText: updatedTexts
-                  })
+        // Setter URL-en til tilfeldig bilde, tekst og lyd
+        let picturesURL = "/content/images/" + this.state.activeCategories[0]
+        +"/"+this.state.activeCategories[0]+"1.svg"
+
+        let textsURL = "/content/texts/" + this.state.activeCategories[1]
+        + ".json"
+
+        let audiosURL= "/content/audio/" + this.state.activeCategories[2]
+        +"/"+this.state.activeCategories[2]+"1.mp3"
+
+        // ---------- HENTER TEKST ------------------
+        // Sjekker at vi ikke allerede har hentet tekst til denne taben
+        if (this.state.activeText[tabNumber-1] === "") {
+          axios.get(textsURL)
+          .then((response) => {
+              console.log("Henter tekst til tab" + tabNumber);
+              let texts = this.state.activeText
+              texts[tabNumber-1] = response.data[tabNumber-1].text
+              this.setState({
+                activeText: texts
               })
-              .catch(function (error) {
-                  console.log(error);
-              });
-            }
-            else {
-              console.log("Har allerede hentet tab" + tabNumber);
-            }
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+        }
+        else {
+          console.log("Har allerede hentet tekst til tab" + tabNumber);
+        }
+
+        // ---------- HENTER BILDE ------------------
+        // Sjekker at vi ikke allerede har hentet bilde til denne taben
+        if (this.state.activePicture[tabNumber-1] === "") {
+          // axios.get(picturesURL)
+          // .then((response) => {
+          //     //console.log(response.data);
+          //     console.log("Henter bilde til tab" + tabNumber);
+          //     let pictures = this.state.activePicture
+          //     pictures[0] = response.data
+          //     this.setState({
+          //       activePicture: pictures
+          //     })
+          // })
+          // .catch(function (error) {
+          //     console.log(error);
+          // });
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", picturesURL, true);
+          ajax.send();
+          const pictures = this.state.activePicture
+          ajax.onload = function(e) {
+            //console.log(ajax.responseText);
+                pictures[0] = ajax.responseText
+          }
+          this.setState({
+            activePicture: pictures
+          })
 
 
         }
+        else {
+          console.log("Har allerede hentet bilde til tab" + tabNumber);
+        }
+        console.log(this.state.activePicture);
 
+        // }
+    }
 
+    // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
+    onCategoryClick(catNo, category) {
+      let categories = this.state.activeCategories
+      categories[catNo-1] = category
+      this.setState({
+        activeCategories: categories
+      })
 
     }
 
@@ -61,8 +121,9 @@ class App extends Component {
       <div className="main_container">
           <Header/>
           <Tabs onTabSelect={this.onTabClick}/>
-          <Home text={this.state.activeText[this.state.tabNumber-1]}/>
-          <Menu/>
+          <Home text={this.state.activeText[this.state.tabNumber-1]}
+          picture = {this.state.activePicture[0]}/>
+          <Menu onCatogarySelect={this.onCategoryClick}/>
           <Footer/>
       </div>
     );

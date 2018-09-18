@@ -35,7 +35,7 @@ class Home extends Component {
         return(
             <div className="home_container">
                 <div className="picture" >
-                    BILDE
+                  {this.props.picture}
                 </div>
                 <div className="text">
                     {this.props.text}
