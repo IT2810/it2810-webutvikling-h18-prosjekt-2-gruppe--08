@@ -30,20 +30,14 @@ class App extends Component {
             this.setState({
                 tabNumber: tabNumber
             })
-            let list = {}
-            axios.get("/content/texts/limmericks.json")
+
+            axios.get("/content/texts/lyrics.json")
             .then((response) => {
-                //console.log(response);
-                if (tabNumber == 1) {
-                    this.setState({
-                        activeText: response.data[0].text
-                    });
-                    //console.log(this.state.activeText);
-                } else if (tabNumber == 2) {
-                    this.setState({
-                        activeText: response.data[1].text
-                    });
-                }
+                console.log(response);
+                this.setState({
+                  activeText: response.data[tabNumber-1].text
+                })
+                
 
             })
             .catch(function (error) {
