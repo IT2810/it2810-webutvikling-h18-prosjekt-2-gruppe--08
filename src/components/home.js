@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const URL_HOME = '/db.json'
+
 
 class Home extends Component {
 
@@ -9,23 +9,25 @@ class Home extends Component {
         super(props);
 
         this.state = {
-            home:''
+            picture: '',
+            text: '',
+            audio: ''
         }
     }
 
 
-    componentDidMount(){
-        axios.get(URL_HOME)
-          .then((response) => {
-              this.setState({
-                  home: response.data.home
-              });
-            console.log(response.data.home.picture[0].text);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    }
+    // componentDidMount(){
+    //     axios.get()
+    //       .then((response) => {
+    //           this.setState({
+    //               home: response.data.home
+    //           });
+    //         console.log(response.data.home.picture[0].text);
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       });
+    // }
 
 
 

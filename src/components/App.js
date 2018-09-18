@@ -8,6 +8,7 @@ import Home from './home';
 import Menu from './menu';
 import Tabs from './tabs';
 
+
 class App extends Component {
 
     constructor(props) {
@@ -29,16 +30,18 @@ class App extends Component {
             this.setState({
                 tabNumber: tabNumber
             })
-            axios.get("/content/texts/lyrics.json")
+            let list = {}
+            axios.get("/content/texts/limmericks.json")
             .then((response) => {
+                //console.log(response);
                 if (tabNumber == 1) {
                     this.setState({
-                        activeText: response.data.lyrics.texts[0].text
-
+                        activeText: response.data[0].text
                     });
+                    //console.log(this.state.activeText);
                 } else if (tabNumber == 2) {
                     this.setState({
-                        activeText: response.data.lyrics.texts[1].text
+                        activeText: response.data[1].text
                     });
                 }
 
@@ -47,6 +50,7 @@ class App extends Component {
                 console.log(error);
             });
         }
+
 
 
     }
