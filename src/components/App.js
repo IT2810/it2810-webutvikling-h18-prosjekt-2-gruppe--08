@@ -19,30 +19,37 @@ class App extends Component {
         this.state = {
             tabNumber:0,
             activePicture:"",
-            activeText:"",
+            activeText:["", "", "", ""],
             activeAudio:""
         }
     }
 
     onTabClick(tabNumber){
-        console.log(tabNumber);
+        //console.log(tabNumber);
         if(this.state.tabNumber != tabNumber) {
             this.setState({
                 tabNumber: tabNumber
             })
 
-            axios.get("/content/texts/lyrics.json")
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                  activeText: response.data[tabNumber-1].text
-                })
-                
+            if (this.state.activeText[tabNumber-1] == "") {
+              axios.get("/content/texts/lyrics.json")
+              .then((response) => {
+                  console.log("henter tekst fra tab" + tabNumber);
+                  let updatedTexts = this.state.activeText
+                  updatedTexts[tabNumber-1] = response.data[tabNumber-1].text
+                  this.setState({
+                    activeText: updatedTexts
+                  })
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });
+            }
+            else {
+              console.log("Har allerede hentet tab" + tabNumber);
+            }
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+
         }
 
 
@@ -54,7 +61,7 @@ class App extends Component {
       <div className="main_container">
           <Header/>
           <Tabs onTabSelect={this.onTabClick}/>
-          <Home text={this.state.activeText}/>
+          <Home text={this.state.activeText[this.state.tabNumber-1]}/>
           <Menu/>
           <Footer/>
       </div>
