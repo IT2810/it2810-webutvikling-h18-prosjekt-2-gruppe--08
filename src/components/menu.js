@@ -14,8 +14,6 @@ class Menu extends Component {
         super(props);
         }
 
-
-
     render()
             {
         return(

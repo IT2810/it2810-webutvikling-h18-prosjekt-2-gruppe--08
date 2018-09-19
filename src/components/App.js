@@ -19,7 +19,7 @@ class App extends Component {
 
         this.state = {
             tabNumber: 0,
-            selectedPicture: 'Nature'
+            selectedPicture: 'Nature',
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
             activeAudio: ["", "", "", ""],
