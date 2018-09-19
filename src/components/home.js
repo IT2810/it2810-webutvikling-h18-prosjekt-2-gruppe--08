@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
-
 class Home extends Component {
 
     constructor(props){
@@ -49,13 +47,10 @@ class Home extends Component {
     render() {
       //console.log(this.props.picture);
       //var svg = this.createElementFromHTML(this.props.picture)
-
-
-
         return(
             <div className="home_container">
                 <div className="picture"
-                  dangerouslySetInnerHTML={this.createMarkup()} />;
+                  dangerouslySetInnerHTML={this.createMarkup()} />
 
                 <div className="text">
                     {this.props.text}
