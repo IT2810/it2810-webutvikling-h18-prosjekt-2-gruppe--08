@@ -14,29 +14,30 @@ class App extends Component {
         super(props);
 
         this.onTabClick = this.onTabClick.bind(this)
-
         this.state = {
             tabNumber:0,
             activePicture:"",
             activeText:"",
-            activeAudio:""
+            activeAudio:"",
+            selectedPicture: 'Nature'
         }
     }
 
+
     onTabClick(tabNumber){
         console.log(tabNumber);
-        if(this.state.tabNumber != tabNumber) {
+        if(this.state.tabNumber !== tabNumber) {
             this.setState({
                 tabNumber: tabNumber
             })
             axios.get("/content/texts/lyrics.json")
             .then((response) => {
-                if (tabNumber == 1) {
+                if (tabNumber === 1) {
                     this.setState({
                         activeText: response.data.lyrics.texts[0].text
 
                     });
-                } else if (tabNumber == 2) {
+                } else if (tabNumber === 2) {
                     this.setState({
                         activeText: response.data.lyrics.texts[1].text
                     });
@@ -51,13 +52,24 @@ class App extends Component {
 
     }
 
+
+    pictureChange(changeEvent){
+        this.setState({
+            selectedPicture: changeEvent.target.value
+        });
+
+    }
+
+
+
+
   render() {
     return (
       <div className="main_container">
           <Header/>
           <Tabs onTabSelect={this.onTabClick}/>
           <Home text={this.state.activeText}/>
-          <Menu/>
+          <Menu onClick={this.pictureChange} />
           <Footer/>
       </div>
     );
