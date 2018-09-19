@@ -25,7 +25,7 @@ class App extends Component {
             activeAudio: ["", "", "", ""],
 
             // [picture, text, audio]
-            activeCategories: ["animal", "lyrics", ""]
+            activeCategories: ["Animal", "lyrics", ""]
 
         }
     }
@@ -44,6 +44,7 @@ class App extends Component {
 
         let textsURL = "/content/texts/" + this.state.activeCategories[1]
         + ".json"
+        console.log(this.state.activeCategories[1]);
 
         let audiosURL= "/content/audio/" + this.state.activeCategories[2]
         +"/"+this.state.activeCategories[2]+"1.mp3"
@@ -97,28 +98,51 @@ class App extends Component {
     }
 
     // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
-    onCategoryClick(catNo, category) {
+    onCategoryClick(catNo, changeEvent) {
       let categories = this.state.activeCategories
-      categories[catNo-1] = category
+      categories[catNo] = changeEvent
       this.setState({
         activeCategories: categories
       })
-
+      this.clearData(catNo)
+      this.onTabClick(this.state.tabNumber)
     }
 
-
-    pictureChange(changeEvent){
+    clearData(catNo) {
+      if (catNo === 0) {
         this.setState({
-            selectedPicture: changeEvent.target.value
-        });
+          activePicture: ["", "", "", ""]
+        })
+      }
+      else if (catNo === 1) {
+        this.setState({
+          activeText: ["", "", "", ""]
+        })
+      }
+      else if (catNo === 2) {
+        this.setState({
+          activeAudio: ["", "", "", ""]
+        })
+      }
 
     }
+
+
+    // pictureChange(changeEvent){
+    //     this.setState({
+    //         selectedPicture: changeEvent.target.value
+    //     });
+    //
+    // }
 
 
 
 
   render() {
-
+    console.log(this.state.activeCategories);
+    //console.log("Bilder: " + this.state.activePicture);
+    console.log("Tekst: " + this.state.activeText);
+    console.log("Audio: " + this.state.activeAudio);
     //  console.log("hei"+ this.state.activePicture);
     return (
       <div className="main_container">
@@ -126,7 +150,7 @@ class App extends Component {
           <Tabs onTabSelect={this.onTabClick}/>
           <Home text={this.state.activeText[this.state.tabNumber-1]}
           picture = {this.state.activePicture[0]}/>
-          <Menu onClick={this.pictureChange}/>
+          <Menu onCategoryChanged={this.onCategoryClick}/>
           <Footer/>
       </div>
     );
