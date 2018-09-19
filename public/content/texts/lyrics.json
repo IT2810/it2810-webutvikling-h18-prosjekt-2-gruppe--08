@@ -1,27 +1,24 @@
-{
-    "lyrics": {
-        "texts": [
-    {
-        "text": "Roses really smells like oh oh oooooh, yeaaaaaaaah"
-    },
-
-    {
-        "text": "When I see your face, I'm a believer!!! "
-    },
-
-    {
-        "text": "Vål'enga Jenter, Vål'enga jenter, nå må vi vise verden hvordan det skal gjøres!
-        Vål'enga jenter, Vål'enga jenter"
-    },
-
-    {
-        "text": "Jeg kjører høy....... fart... med mopedbart!!!!!! "
-    }
 
 
+[
+  {
+  "id": 1,
+  "text": "Roses really smells like oh oh oooooh, yeaaaaaaaah"
+  } ,
 
-    ]
-        }
+  {
+    "id": 2,
+    "text": "When I see your face, I'm a believer!!! "
+  } ,
 
+  {
+  "id": 3,
+  "text": "Vål'enga Jenter, Vål'enga jenter, nå må vi vise verden hvordan det skal gjøres! Vål'enga jenter, Vål'enga jenter"
+  } ,
 
-}
+  {
+    "id": 4,
+    "text": "Jeg kjører høy....... fart... med mopedbart!!!!!! "
+  }
+
+]
