@@ -19,13 +19,13 @@ class App extends Component {
 
         this.state = {
             tabNumber: 0,
-            selectedPicture: 'Nature',
+            //selectedPicture: 'Nature',
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
             activeAudio: ["", "", "", ""],
 
             // [picture, text, audio]
-            activeCategories: ["Animal", "lyrics", ""]
+            activeCategories: ["animal", "lyrics", ""]
 
         }
     }
@@ -139,6 +139,7 @@ class App extends Component {
 
 
   render() {
+    console.log("-------------------------------------------");
     console.log(this.state.activeCategories);
     //console.log("Bilder: " + this.state.activePicture);
     console.log("Tekst: " + this.state.activeText);
