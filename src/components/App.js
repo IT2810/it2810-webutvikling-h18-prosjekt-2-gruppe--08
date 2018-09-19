@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios  from 'axios';
 
 // Component
 import Header from './header';
@@ -13,6 +13,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
+
 
         this.onTabClick = this.onTabClick.bind(this)
         this.onCategoryClick = this.onCategoryClick.bind(this)
@@ -141,7 +142,6 @@ class App extends Component {
 
 
 
-
   render() {
     console.log("Nå er jeg i render() i App.js");
     //console.log(this.state.activeCategories);
@@ -159,6 +159,10 @@ class App extends Component {
           <Menu textCategory = {this.state.activeCategories[1]}
           onCategoryChanged={this.onCategoryClick}/>
           <Footer/>
+          <audio controls>
+              <source src="" type="audio/ogg"/>
+                  <source src="" type="audio/mpeg"/>
+          </audio>
       </div>
     );
   }
