@@ -39,7 +39,7 @@ class Home extends Component {
         return child;
       }
 
-      //
+      // For å gjøre om responseteksten fra ajax-kallet til svg
       createMarkup(){
           return {__html: this.props.picture};
       }

@@ -70,28 +70,16 @@ class App extends Component {
         // ---------- HENTER BILDE ------------------
         // Sjekker at vi ikke allerede har hentet bilde til denne taben
         if (this.state.activePicture[tabNumber-1] === "") {
-          // axios.get(picturesURL)
-          // .then((response) => {
-          //     //console.log(response.data);
-          //     console.log("Henter bilde til tab" + tabNumber);
-          //     let pictures = this.state.activePicture
-          //     pictures[0] = response.data
-          //     this.setState({
-          //       activePicture: pictures
-          //     })
-          // })
-          // .catch(function (error) {
-          //     console.log(error);
-          // });
           var ajax = new XMLHttpRequest();
           ajax.open("GET", picturesURL, true);
           ajax.send();
           const pictures = this.state.activePicture
+          console.log("Henter bilde til tab" + tabNumber);
           ajax.onload = function(e) {
             //console.log(ajax.responseText);
                 pictures[0] = ajax.responseText
           }
-          console.log(pictures[0]);
+          //console.log(pictures[0]);
           this.setState({
             activePicture: pictures
           })
