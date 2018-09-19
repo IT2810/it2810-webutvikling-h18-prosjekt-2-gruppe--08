@@ -29,14 +29,34 @@ class Home extends Component {
     //       });
     // }
 
+    createElementFromHTML(htmlString) {
+        var div = document.createElement('div');
+        div.innerHTML = htmlString.trim();
+
+        // Change this to div.childNodes to support multiple top-level nodes
+        var child = div.firstChild;
+        console.log(child);
+        return child;
+      }
+
+      //
+      createMarkup(){
+          return {__html: this.props.picture};
+      }
+
 
 
     render() {
+      //console.log(this.props.picture);
+      //var svg = this.createElementFromHTML(this.props.picture)
+
+
+
         return(
             <div className="home_container">
-                <div className="picture" >
-                  {this.props.picture}
-                </div>
+                <div className="picture"
+                  dangerouslySetInnerHTML={this.createMarkup()} />;
+
                 <div className="text">
                     {this.props.text}
                 </div>

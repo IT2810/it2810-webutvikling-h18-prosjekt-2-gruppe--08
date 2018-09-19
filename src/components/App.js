@@ -28,7 +28,6 @@ class App extends Component {
             activeCategories: ["animal", "lyrics", ""]
 
         }
-
     }
 
     onTabClick(tabNumber){
@@ -92,6 +91,7 @@ class App extends Component {
             //console.log(ajax.responseText);
                 pictures[0] = ajax.responseText
           }
+          console.log(pictures[0]);
           this.setState({
             activePicture: pictures
           })
@@ -101,7 +101,7 @@ class App extends Component {
         else {
           console.log("Har allerede hentet bilde til tab" + tabNumber);
         }
-        console.log(this.state.activePicture);
+
 
         // }
     }
@@ -117,6 +117,8 @@ class App extends Component {
     }
 
   render() {
+
+    //  console.log("hei"+ this.state.activePicture);
     return (
       <div className="main_container">
           <Header/>
