@@ -19,7 +19,7 @@ class App extends Component {
 
         this.state = {
             tabNumber: 0,
-
+            selectedPicture: 'Nature'
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
             activeAudio: ["", "", "", ""],
@@ -29,6 +29,7 @@ class App extends Component {
 
         }
     }
+
 
     onTabClick(tabNumber){
         //console.log(tabNumber);
@@ -65,6 +66,7 @@ class App extends Component {
         }
         else {
           console.log("Har allerede hentet tekst til tab" + tabNumber);
+
         }
 
         // ---------- HENTER BILDE ------------------
@@ -104,6 +106,17 @@ class App extends Component {
 
     }
 
+
+    pictureChange(changeEvent){
+        this.setState({
+            selectedPicture: changeEvent.target.value
+        });
+
+    }
+
+
+
+
   render() {
 
     //  console.log("hei"+ this.state.activePicture);
@@ -113,7 +126,7 @@ class App extends Component {
           <Tabs onTabSelect={this.onTabClick}/>
           <Home text={this.state.activeText[this.state.tabNumber-1]}
           picture = {this.state.activePicture[0]}/>
-          <Menu onCatogarySelect={this.onCategoryClick}/>
+          <Menu onClick={this.pictureChange}/>
           <Footer/>
       </div>
     );
