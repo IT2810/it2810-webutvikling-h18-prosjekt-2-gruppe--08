@@ -20,6 +20,8 @@ class Menu extends Component {
 
     render()
             {
+              console.log("Nå er jeg i render() i Menu.js");
+
         return(
             <div className="menu_container">
             {/*-- ------------------------------- PICTURE ----------------------------------------------- */}
@@ -53,26 +55,28 @@ class Menu extends Component {
                 {/* ------------------------------- TEXT -----------------------------------------------*/}
                 <div className="text_choice">
                     <h2>Text</h2>
-                    <input type="radio" value='poems' checked={this.state.text_choice === 'poems'}
+                    <input type="radio" value='poems' checked={this.props.textCategory === 'poems'}
                     onClick={() => {
                       this.props.onCategoryChanged(1, 'poems')
-                      this.setState({text_choice: 'poems'})
                     }
                   }  /> Poem
 
                     <h3> </h3>
-                    <input type="radio" value='limericks' checked={this.state.text_choice === 'limericks'}
+                    <input type="radio" value='limericks' checked={this.props.textCategory === 'limericks'}
                     onClick={() => {
+                      console.log("Du klikket nå på limerick..")
                       this.props.onCategoryChanged(1, 'limericks')
-                      this.setState({text_choice: 'limericks'})
+
                     }
                   } /> Limerick
 
                     <h3> </h3>
-                    <input type="radio" value='lyrics' checked={this.state.text_choice === 'lyrics'}
+                    <input type="radio" value='lyrics' checked={this.props.textCategory === 'lyrics'}
                     onClick={() => {
+                    console.log("Du klikket nå på lyric..")
                       this.props.onCategoryChanged(1, 'lyrics')
-                      this.setState({text_choice: 'lyrics'})
+
+
                     }
                   } /> Lyric
                 </div>

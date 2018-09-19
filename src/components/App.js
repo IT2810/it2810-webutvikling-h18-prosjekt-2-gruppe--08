@@ -18,14 +18,14 @@ class App extends Component {
         this.onCategoryClick = this.onCategoryClick.bind(this)
 
         this.state = {
-            tabNumber: 0,
+            tabNumber: 1,
             //selectedPicture: 'Nature',
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
             activeAudio: ["", "", "", ""],
 
             // [picture, text, audio]
-            activeCategories: ["animal", "lyrics", ""]
+            activeCategories: ["", "", ""]
 
         }
     }
@@ -44,7 +44,7 @@ class App extends Component {
 
         let textsURL = "/content/texts/" + this.state.activeCategories[1]
         + ".json"
-        console.log(this.state.activeCategories[1]);
+        //console.log(this.state.activeCategories[1]);
 
         let audiosURL= "/content/audio/" + this.state.activeCategories[2]
         +"/"+this.state.activeCategories[2]+"1.mp3"
@@ -101,11 +101,15 @@ class App extends Component {
     onCategoryClick(catNo, changeEvent) {
       let categories = this.state.activeCategories
       categories[catNo] = changeEvent
+
       this.setState({
         activeCategories: categories
       })
+
       this.clearData(catNo)
+      //console.log("Tekst: " + this.state.activeText);
       this.onTabClick(this.state.tabNumber)
+
     }
 
     clearData(catNo) {
@@ -139,11 +143,11 @@ class App extends Component {
 
 
   render() {
-    console.log("-------------------------------------------");
-    console.log(this.state.activeCategories);
+    console.log("Nå er jeg i render() i App.js");
+    //console.log(this.state.activeCategories);
     //console.log("Bilder: " + this.state.activePicture);
-    console.log("Tekst: " + this.state.activeText);
-    console.log("Audio: " + this.state.activeAudio);
+    //console.log("Tekst: " + this.state.activeText);
+    //console.log("Audio: " + this.state.activeAudio);
     //  console.log("hei"+ this.state.activePicture);
     return (
       <div className="main_container">
@@ -151,7 +155,9 @@ class App extends Component {
           <Tabs onTabSelect={this.onTabClick}/>
           <Home text={this.state.activeText[this.state.tabNumber-1]}
           picture = {this.state.activePicture[0]}/>
-          <Menu onCategoryChanged={this.onCategoryClick}/>
+          {/* Må sende inn bilde og lyd som prop til menu-component i tillegg */}
+          <Menu textCategory = {this.state.activeCategories[1]}
+          onCategoryChanged={this.onCategoryClick}/>
           <Footer/>
       </div>
     );
