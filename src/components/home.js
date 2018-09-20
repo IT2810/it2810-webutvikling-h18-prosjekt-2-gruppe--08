@@ -52,9 +52,9 @@ class Home extends Component {
                   dangerouslySetInnerHTML={this.createMarkup()} />
 
                 <div className="text">
-                    {this.props.text.split("+\n").map((i,key) => {
-                        return (<div key={key}>{i}</div>);
-                    })}
+                  {this.props.text.split("\n").map((i,key) => {
+                    return <div key={key}>{i}</div>;
+                  })}
                 </div>
 
                 <div className="audio" >

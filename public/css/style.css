@@ -94,6 +94,7 @@ div {
 }
 
 .home_container .text {
+    font-style: italic;
     grid-column: 2/3;
     grid-row: 1;
 }
