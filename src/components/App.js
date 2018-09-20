@@ -66,6 +66,7 @@ class App extends Component {
         .then((response) => {
             console.log("Henter tekst til tab" + this.state.activeTab);
             let texts = this.state.activeTexts
+            console.log(response.data);
             texts[this.state.activeTab] = response.data[this.state.activeTab].text
             this.setState({
               activeTexts: texts
@@ -171,7 +172,7 @@ class App extends Component {
 
   render() {
     console.log("Nå er jeg i render() i App.js");
-
+    console.log(this.state.activeTexts);
     return (
         <div className="main_container">
           <Header/>
@@ -186,8 +187,7 @@ class App extends Component {
           textCategory = {this.state.activeCategories[1]}
           audioCategory = {this.state.activeCategories[2]}
           onCategoryChanged={this.categoryUpdate}
-          text = {this.state.activeTexts}
-          c = {this.state.activeCategories}/>
+          />
 
           <Footer/>
       </div>
