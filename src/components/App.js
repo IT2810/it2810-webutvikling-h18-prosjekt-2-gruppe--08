@@ -32,27 +32,26 @@ class App extends Component {
     }
 
     getPictureOnTab(){
+      console.log("Nå er jeg i getPictureOnTab");
       let picturesURL = "/content/images/" + this.state.activeCategories[0]
-      +"/"+this.state.activeCategories[0]+"1.svg"
+      +"/"+this.state.activeCategories[0]+ (this.state.tabNumber+1) + ".svg"
       // ---------- HENTER BILDE ------------------
-      // Sjekker at vi ikke allerede har hentet bilde til denne taben
       if (this.state.activePicture[this.state.tabNumber] === "") {
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", picturesURL, true);
-        ajax.send();
-        const pictures = this.state.activePicture
-        console.log("Henter bilde til tab" + this.state.tabNumber);
-        ajax.onload = function(e) {
-          //console.log(ajax.responseText);
-              pictures[0] = ajax.responseText
-        }
-        //console.log(pictures[0]);
-        this.setState({
-          activePicture: pictures
+        axios.get(picturesURL)
+        .then((response) => {
+            console.log("Henter bilde til tab" + this.state.tabNumber);
+            let pictures = this.state.activePicture
+            pictures[this.state.tabNumber] = response.data
+            this.setState({
+              activePicture: pictures
+            })
         })
+        .catch(function (error) {
+            console.log(error);
+        });
       }
       else {
-        console.log("Har allerede hentet bilde til tab" + this.statetabNumber);
+        console.log("Har allerede hentet bilde til tab" + this.state.tabNumber);
       }
     }
 
@@ -90,7 +89,7 @@ class App extends Component {
     tabUpdate(tabNumber){
       // TODO: Skal kun skje endring dersom man endrer tab
        if (tabNumber > -1){
-        console.log("Nå er jeg inne i onTabClick");
+        console.log("Nå er jeg inne i tabUpdate");
         this.setState({
             tabNumber: tabNumber
         }, () => {
@@ -102,6 +101,7 @@ class App extends Component {
 
     getMedia() {
       // Om en kategori for mediatypene er valgt så hentes et medie fra samlingen under den kategorien
+      console.log("Inne i getMedia, tab er " + this.state.tabNumber);
       if (this.state.activeCategories[0] !== ""){
         this.getPictureOnTab()
       }
@@ -114,20 +114,20 @@ class App extends Component {
 
     // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
     categoryUpdate(catNo, changeEvent) {
+      console.log("Nå er jeg i categoryUpdate og skal endre til " + changeEvent);
       let categories = this.state.activeCategories
       categories[catNo] = changeEvent
+
+      // Når en ny kategori endres for et medie så tømmes de allerede innhentede mediene for den kategorien
       this.clearData(catNo)
 
-      // Setter onTabClick i en callback for å sikre at den kalles ETTER at staten er endret
+      // Setter tabUpdate i en callback for å sikre at den kalles ETTER at staten er endret
       this.setState({
         activeCategories: categories
       }, () => {
+        console.log("Kategoriene er nå: " + this.state.activeCategories);
         this.tabUpdate(this.state.tabNumber)
       })
-
-
-      //console.log("Tekst: " + this.state.activeText);
-      //this.onTabClick(this.state.tabNumber)
 
     }
 
@@ -151,13 +151,6 @@ class App extends Component {
     }
 
 
-    // pictureChange(changeEvent){
-    //     this.setState({
-    //         selectedPicture: changeEvent.target.value
-    //     });
-    //
-    // }
-
 
 
   render() {
@@ -171,14 +164,18 @@ class App extends Component {
       <div className="main_container">
           <Header/>
           <Tabs onTabSelect={this.tabUpdate}/>
+
           <Home text={this.state.activeText[this.state.tabNumber]}
-          picture = {this.state.activePicture[0]}/>
-          {/* Må sende inn bilde og lyd som prop til menu-component i tillegg */}
-          <Menu textCategory = {this.state.activeCategories[1]}
+          picture = {this.state.activePicture[this.state.tabNumber]}/>
+
+          <Menu
+          pictureCategory = {this.state.activeCategories[0]}
+          textCategory = {this.state.activeCategories[1]}
+          audioCategory = {this.state.activeCategories[2]}
           onCategoryChanged={this.categoryUpdate}
           text = {this.state.activeText}
-          c = {this.state.activeCategories}
-          />
+          c = {this.state.activeCategories}/>
+
           <Footer/>
           <audio controls>
               <source src="" type="audio/ogg"/>
