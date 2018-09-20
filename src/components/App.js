@@ -15,11 +15,11 @@ class App extends Component {
         super(props);
 
 
-        this.onTabClick = this.onTabClick.bind(this)
-        this.onCategoryClick = this.onCategoryClick.bind(this)
+        this.tabUpdate = this.tabUpdate.bind(this)
+        this.categoryUpdate = this.categoryUpdate.bind(this)
 
         this.state = {
-            tabNumber: -1,
+            tabNumber: 0,
 
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
@@ -87,34 +87,43 @@ class App extends Component {
       +"/"+this.state.activeCategories[2]+"1.mp3"
     }
 
-    onTabClick(tabNumber){
+    tabUpdate(tabNumber){
       // TODO: Skal kun skje endring dersom man endrer tab
        if (tabNumber > -1){
+        console.log("Nå er jeg inne i onTabClick");
         this.setState({
             tabNumber: tabNumber
-        })
-        console.log("Nå er jeg inne i onTabClick");
-        // Om en kategori for mediatypene er valgt så hentes et medie fra samlingen under den kategorien
-        if (this.state.activeCategories[0] !== ""){
-          this.getPictureOnTab()
-        }
-        if (this.state.activeCategories[1] !== ""){
-          this.getTextOnTab()
-        }
-        // TODO: Mangler å hente lyd
+        }, () => {
+          this.getMedia()
+          }
+        )
        }
+    }
+
+    getMedia() {
+      // Om en kategori for mediatypene er valgt så hentes et medie fra samlingen under den kategorien
+      if (this.state.activeCategories[0] !== ""){
+        this.getPictureOnTab()
+      }
+      if (this.state.activeCategories[1] !== ""){
+        this.getTextOnTab()
+      }
+        // TODO: Mangler å hente lyd
     }
 
 
     // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
-    onCategoryClick(catNo, changeEvent) {
+    categoryUpdate(catNo, changeEvent) {
       let categories = this.state.activeCategories
       categories[catNo] = changeEvent
       this.clearData(catNo)
 
+      // Setter onTabClick i en callback for å sikre at den kalles ETTER at staten er endret
       this.setState({
         activeCategories: categories
-      }, this.onTabClick(this.state.tabNumber) )
+      }, () => {
+        this.tabUpdate(this.state.tabNumber)
+      })
 
 
       //console.log("Tekst: " + this.state.activeText);
@@ -161,12 +170,15 @@ class App extends Component {
     return (
       <div className="main_container">
           <Header/>
-          <Tabs onTabSelect={this.onTabClick}/>
+          <Tabs onTabSelect={this.tabUpdate}/>
           <Home text={this.state.activeText[this.state.tabNumber]}
           picture = {this.state.activePicture[0]}/>
           {/* Må sende inn bilde og lyd som prop til menu-component i tillegg */}
           <Menu textCategory = {this.state.activeCategories[1]}
-          onCategoryChanged={this.onCategoryClick}/>
+          onCategoryChanged={this.categoryUpdate}
+          text = {this.state.activeText}
+          c = {this.state.activeCategories}
+          />
           <Footer/>
           <audio controls>
               <source src="" type="audio/ogg"/>

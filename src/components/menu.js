@@ -21,6 +21,8 @@ class Menu extends Component {
     render()
             {
               console.log("Nå er jeg i render() i Menu.js");
+              console.log(this.props.text);
+              console.log(this.props.c);
               console.log("--------------------------------");
 
         return(
