@@ -155,11 +155,7 @@ class App extends Component {
 
   render() {
     console.log("Nå er jeg i render() i App.js");
-    //console.log(this.state.activeCategories);
-    //console.log("Bilder: " + this.state.activePicture);
-    //console.log("Tekst: " + this.state.activeText);
-    //console.log("Audio: " + this.state.activeAudio);
-    //  console.log("hei"+ this.state.activePicture);
+    
     return (
       <div className="main_container">
           <Header/>
