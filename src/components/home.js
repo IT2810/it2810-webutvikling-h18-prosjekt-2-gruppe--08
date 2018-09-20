@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Home extends Component {
 
     constructor(props){
         super(props);
 
-        this.state = {
-            picture: '',
-            text: '',
-            audio: ''
-        }
     }
 
 
@@ -42,11 +36,16 @@ class Home extends Component {
           return {__html: this.props.picture};
       }
 
+      // playAudio(audio_src){
+      //   let audio = new Audio(audio_src)
+      //   audio.play()
+      // }
+
 
 
     render() {
       console.log("Nå er jeg i render() i Home.js")
-      
+
         return(
             <div className="home_container">
                 <div className="picture"
@@ -55,8 +54,10 @@ class Home extends Component {
                 <div className="text">
                     {this.props.text}
                 </div>
-                <div className="audio">
-                    LYD asvhfjdklø
+
+                <div className="audio" >
+                <audio src= {this.props.audio} type="audio/mp3" controls />
+
                 </div>
 
             </div>

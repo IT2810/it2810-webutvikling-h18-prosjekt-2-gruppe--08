@@ -81,9 +81,24 @@ class App extends Component {
     }
 
     getAudioOnTab(){
-      let audiosURL= "/content/audio/" + this.state.activeCategories[2]
-      +"/"+this.state.activeCategories[2]+"1.mp3"
+      console.log("Nå er jeg i getAudioOnTab");
+      let audioURL= "/content/audios/" + this.state.activeCategories[2]
+      +"/"+this.state.activeCategories[2]+ (this.state.activeTab+1)+".mp3"
+      console.log(audioURL);
+        // Sjekker at vi ikke allerede har hentet lyd til denne taben
+      if (this.state.activeAudios[this.state.activeTab] === ""){
+        let audios = this.state.activeAudios
+        audios[this.state.activeTab] = audioURL
+        this.setState({
+          activeAudios: audios
+        })
+      }
+      else {
+        console.log("Har allerede lagt inn lydkilden til tab" + this.state.activeTab);
+      }
     }
+
+
 
     tabUpdate(tab){
       // TODO: Skal kun skje endring dersom man endrer tab
@@ -107,7 +122,9 @@ class App extends Component {
       if (this.state.activeCategories[1] !== ""){
         this.getTextOnTab()
       }
-        // TODO: Mangler å hente lyd
+      if (this.state.activeCategories[2] !== ""){
+        this.getAudioOnTab()
+      }
     }
 
 
@@ -161,7 +178,8 @@ class App extends Component {
           <Tabs onTabSelect={this.tabUpdate}/>
 
           <Home text={this.state.activeTexts[this.state.activeTab]}
-          picture = {this.state.activePictures[this.state.activeTab]}/>
+          picture = {this.state.activePictures[this.state.activeTab]}
+          audio={this.state.activeAudios[this.state.activeTab]}/>
 
           <Menu
           pictureCategory = {this.state.activeCategories[0]}
@@ -172,10 +190,7 @@ class App extends Component {
           c = {this.state.activeCategories}/>
 
           <Footer/>
-          <audio controls>
-              <source src="" type="audio/ogg"/>
-                  <source src="" type="audio/mpeg"/>
-          </audio>
+
       </div>
     );
   }
