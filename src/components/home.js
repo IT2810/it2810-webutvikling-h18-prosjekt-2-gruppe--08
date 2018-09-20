@@ -45,8 +45,8 @@ class Home extends Component {
 
 
     render() {
-      //console.log(this.props.picture);
-      //var svg = this.createElementFromHTML(this.props.picture)
+      console.log("Nå er jeg i render() i Home.js")
+      
         return(
             <div className="home_container">
                 <div className="picture"

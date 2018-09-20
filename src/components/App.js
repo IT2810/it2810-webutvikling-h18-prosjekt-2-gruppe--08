@@ -15,12 +15,12 @@ class App extends Component {
         super(props);
 
 
-        this.onTabClick = this.onTabClick.bind(this)
-        this.onCategoryClick = this.onCategoryClick.bind(this)
+        this.tabUpdate = this.tabUpdate.bind(this)
+        this.categoryUpdate = this.categoryUpdate.bind(this)
 
         this.state = {
-            tabNumber: 1,
-            //selectedPicture: 'Nature',
+            tabNumber: 0,
+
             activePicture: ["", "", "", ""],
             activeText: ["", "", "", ""],
             activeAudio: ["", "", "", ""],
@@ -31,85 +31,103 @@ class App extends Component {
         }
     }
 
-
-    onTabClick(tabNumber){
-        //console.log(tabNumber);
-        // if(this.state.tabNumber !== tabNumber) {
-        this.setState({
-            tabNumber: tabNumber
+    getPictureOnTab(){
+      console.log("Nå er jeg i getPictureOnTab");
+      let picturesURL = "/content/images/" + this.state.activeCategories[0]
+      +"/"+this.state.activeCategories[0]+ (this.state.tabNumber+1) + ".svg"
+      // ---------- HENTER BILDE ------------------
+      if (this.state.activePicture[this.state.tabNumber] === "") {
+        axios.get(picturesURL)
+        .then((response) => {
+            console.log("Henter bilde til tab" + this.state.tabNumber);
+            let pictures = this.state.activePicture
+            pictures[this.state.tabNumber] = response.data
+            this.setState({
+              activePicture: pictures
+            })
         })
-
-        // Setter URL-en til tilfeldig bilde, tekst og lyd
-        let picturesURL = "/content/images/" + this.state.activeCategories[0]
-        +"/"+this.state.activeCategories[0]+"1.svg"
-
-        let textsURL = "/content/texts/" + this.state.activeCategories[1]
-        + ".json"
-        //console.log(this.state.activeCategories[1]);
-
-        let audiosURL= "/content/audio/" + this.state.activeCategories[2]
-        +"/"+this.state.activeCategories[2]+"1.mp3"
-
-        // ---------- HENTER TEKST ------------------
-        // Sjekker at vi ikke allerede har hentet tekst til denne taben
-        if (this.state.activeText[tabNumber-1] === "") {
-          axios.get(textsURL)
-          .then((response) => {
-              console.log("Henter tekst til tab" + tabNumber);
-              let texts = this.state.activeText
-              texts[tabNumber-1] = response.data[tabNumber-1].text
-              this.setState({
-                activeText: texts
-              })
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
-        }
-        else {
-          console.log("Har allerede hentet tekst til tab" + tabNumber);
-
-        }
-
-        // ---------- HENTER BILDE ------------------
-        // Sjekker at vi ikke allerede har hentet bilde til denne taben
-        if (this.state.activePicture[tabNumber-1] === "") {
-          var ajax = new XMLHttpRequest();
-          ajax.open("GET", picturesURL, true);
-          ajax.send();
-          const pictures = this.state.activePicture
-          console.log("Henter bilde til tab" + tabNumber);
-          ajax.onload = function(e) {
-            //console.log(ajax.responseText);
-                pictures[0] = ajax.responseText
-          }
-          //console.log(pictures[0]);
-          this.setState({
-            activePicture: pictures
-          })
-
-
-        }
-        else {
-          console.log("Har allerede hentet bilde til tab" + tabNumber);
-        }
-
-
-        // }
+        .catch(function (error) {
+            console.log(error);
+        });
+      }
+      else {
+        console.log("Har allerede hentet bilde til tab" + this.state.tabNumber);
+      }
     }
 
+    getTextOnTab(){
+      let textsURL = "/content/texts/" + this.state.activeCategories[1]
+      + ".json"
+      // ---------- HENTER TEKST ------------------
+      // Sjekker at vi ikke allerede har hentet tekst til denne taben
+      console.log("Nå er jeg inne i getTextOnTab");
+      console.log("Tabnumber er " + this.state.tabNumber);
+      if (this.state.activeText[this.state.tabNumber] === "") {
+        axios.get(textsURL)
+        .then((response) => {
+            console.log("Henter tekst til tab" + this.state.tabNumber);
+            let texts = this.state.activeText
+            texts[this.state.tabNumber] = response.data[this.state.tabNumber].text
+            this.setState({
+              activeText: texts
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      }
+      else {
+        console.log("Har allerede hentet tekst til tab" + this.state.tabNumber);
+      }
+    }
+
+    getAudioOnTab(){
+      let audiosURL= "/content/audio/" + this.state.activeCategories[2]
+      +"/"+this.state.activeCategories[2]+"1.mp3"
+    }
+
+    tabUpdate(tabNumber){
+      // TODO: Skal kun skje endring dersom man endrer tab
+       if (tabNumber > -1){
+        console.log("Nå er jeg inne i tabUpdate");
+        this.setState({
+            tabNumber: tabNumber
+        }, () => {
+          this.getMedia()
+          }
+        )
+       }
+    }
+
+    getMedia() {
+      // Om en kategori for mediatypene er valgt så hentes et medie fra samlingen under den kategorien
+      console.log("Inne i getMedia, tab er " + this.state.tabNumber);
+      if (this.state.activeCategories[0] !== ""){
+        this.getPictureOnTab()
+      }
+      if (this.state.activeCategories[1] !== ""){
+        this.getTextOnTab()
+      }
+        // TODO: Mangler å hente lyd
+    }
+
+
     // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
-    onCategoryClick(catNo, changeEvent) {
+    categoryUpdate(catNo, changeEvent) {
+      console.log("Nå er jeg i categoryUpdate og skal endre til " + changeEvent);
       let categories = this.state.activeCategories
       categories[catNo] = changeEvent
 
+      // Når en ny kategori endres for et medie så tømmes de allerede innhentede mediene for den kategorien
+      this.clearData(catNo)
+
+      // Setter tabUpdate i en callback for å sikre at den kalles ETTER at staten er endret
       this.setState({
         activeCategories: categories
+      }, () => {
+        console.log("Kategoriene er nå: " + this.state.activeCategories);
+        this.tabUpdate(this.state.tabNumber)
       })
-
-      this.clearData(catNo)
-      //console.log("Tekst: " + this.state.activeText);
-      this.onTabClick(this.state.tabNumber)
 
     }
 
@@ -133,31 +151,27 @@ class App extends Component {
     }
 
 
-    // pictureChange(changeEvent){
-    //     this.setState({
-    //         selectedPicture: changeEvent.target.value
-    //     });
-    //
-    // }
-
 
 
   render() {
     console.log("Nå er jeg i render() i App.js");
-    //console.log(this.state.activeCategories);
-    //console.log("Bilder: " + this.state.activePicture);
-    //console.log("Tekst: " + this.state.activeText);
-    //console.log("Audio: " + this.state.activeAudio);
-    //  console.log("hei"+ this.state.activePicture);
+    
     return (
       <div className="main_container">
           <Header/>
-          <Tabs onTabSelect={this.onTabClick}/>
-          <Home text={this.state.activeText[this.state.tabNumber-1]}
-          picture = {this.state.activePicture[0]}/>
-          {/* Må sende inn bilde og lyd som prop til menu-component i tillegg */}
-          <Menu textCategory = {this.state.activeCategories[1]}
-          onCategoryChanged={this.onCategoryClick}/>
+          <Tabs onTabSelect={this.tabUpdate}/>
+
+          <Home text={this.state.activeText[this.state.tabNumber]}
+          picture = {this.state.activePicture[this.state.tabNumber]}/>
+
+          <Menu
+          pictureCategory = {this.state.activeCategories[0]}
+          textCategory = {this.state.activeCategories[1]}
+          audioCategory = {this.state.activeCategories[2]}
+          onCategoryChanged={this.categoryUpdate}
+          text = {this.state.activeText}
+          c = {this.state.activeCategories}/>
+
           <Footer/>
           <audio controls>
               <source src="" type="audio/ogg"/>
