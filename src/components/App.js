@@ -156,7 +156,7 @@ class App extends Component {
     console.log("Nå er jeg i render() i App.js");
 
     return (
-      <div className="main_container">
+        <div className="main_container">
           <Header/>
           <Tabs onTabSelect={this.tabUpdate}/>
 
@@ -172,10 +172,6 @@ class App extends Component {
           c = {this.state.activeCategories}/>
 
           <Footer/>
-          <audio controls>
-              <source src="" type="audio/ogg"/>
-                  <source src="" type="audio/mpeg"/>
-          </audio>
       </div>
     );
   }

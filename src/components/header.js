@@ -6,7 +6,7 @@ class Header extends Component {
     render() {
         return(
             <div className="header">
-                <h1>Tittel</h1>
+                <h1> ARTWORK RANDOMIZER </h1>
             </div>
         )
     }
