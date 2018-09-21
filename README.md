@@ -5,17 +5,11 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 <br>
 
 
-### Innhold og funksjonalitet
-fasdfasdfdasf
-asdfasdfasdfasdf
 
-### Teknologi
-asdfasdfas df
-fasdfasdfsdf
 
-  - [Innhold og funksjonalitet](#netlify)
+  - [Innhold og funksjonalitet](#innhold og funksjonalitet)
     - [underkrav](#underkrav1)
-  - [Teknologi](#now)
+  - [Teknologi](#teknologi)
   - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
 - [Advanced Configuration](#advanced-configuration)
@@ -31,7 +25,13 @@ fasdfasdfsdf
 
 
 
-### Innhold of funksjonalitet
+### Innhold og funksjonalitet
+fasdfasdfdasf
+asdfasdfasdfasdf
+
+### Teknologi
+asdfasdfas df
+fasdfasdfsdf
 
 
 
