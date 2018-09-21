@@ -68,7 +68,9 @@ Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du k
 
 
 #### AJAX
-Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst og lyd. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. 
+Vi har brukt 
+Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. Lyd-filer håndteres med HTML5 audio-tag, der url-en (path-en) til lydfilene lagres i en liste på samme måte som for bilde- og tekst-filene. Audio-tagen tar seg av selve lastingen av lydfilene for oss.
+
 
 
 #### Responsive Web Design
