@@ -1,13 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+## Artwork Randomizer - Gruppe 8
+Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i emnet IT2810 Webutvikling. Prosjektet gikk ut på å lage en online utstilling med brukerstyrte kombinasjoner av lyd, svg-grafikk og tekst. Applikasjonen er implementert som en *Single Page Application (SPA)* med React. Les mer om React [her](https://reactjs.org/).
 
-## HeiHeiHei....
+<br>
 
-  - [Netlify](#netlify)
-  - [Now](#now)
-  - [S3 and CloudFront](#s3-and-cloudfront)
+
+
+
+  - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
+    - [underkrav](#underkrav1)
+  - [Teknologi](#teknologi)
+  - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
 - [Advanced Configuration](#advanced-configuration)
 - [Troubleshooting](#troubleshooting)
@@ -19,6 +22,18 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Alternatives to Ejecting](#alternatives-to-ejecting)
 - [Something Missing?](#something-missing)
+
+
+
+### Innhold og funksjonalitet
+fasdfasdfdasf
+asdfasdfasdfasdf
+
+### Teknologi
+asdfasdfas df
+fasdfasdfsdf
+
+
 
 ## Updating to New Releases
 
