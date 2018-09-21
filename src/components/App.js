@@ -30,6 +30,11 @@ class App extends Component {
         }
     }
 
+    // For å få opp en startutstilling
+    componentDidMount(){
+      this.tabUpdate(this.state.activeTab)
+    }
+
 
     getPictureOnTab() {
         console.log("Nå er jeg i getPictureOnTab");
@@ -55,10 +60,7 @@ class App extends Component {
         }
     }
 
-    // For å få opp en startutstilling
-    componentDidMount(){
-      this.tabUpdate(this.state.activeTab)
-    }
+
 
 
     getTextOnTab() {

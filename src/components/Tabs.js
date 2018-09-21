@@ -1,34 +1,25 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-/*
-Tabs.propTypes = {
-    activeTabs: PropTypes.array.isRequired,
-    onTabSelect: PropTypes.func.isRequired
-};
-
-*/
 class Tabs extends Component {
 
-    getStyle(activeBool) {
-        return activeBool === true ? {'backgroundColor': 'pink'} : {'backgroundColor': 'white'};
+    constructor(props){
+        super(props);
+
     }
 
-
     render() {
-        let {activeTabs} = this.props;
-        return (
+        return(
             <div className="tabs_container">
-                <div className="tab1" onClick={() => this.props.onTabSelect(0)} style={this.getStyle(activeTabs[0])}>
+                <div className="tab1" onClick={() => this.props.onTabSelect(0)}>
                     <a>Artwork 1</a>
                 </div>
-                <div className="tab2" onClick={() => this.props.onTabSelect(1)} style={this.getStyle(activeTabs[1])}>
+                <div className="tab2" onClick={() => this.props.onTabSelect(1)}>
                     <a>Artwork 2</a>
                 </div>
-                <div className="tab3" onClick={() => this.props.onTabSelect(2)} style={this.getStyle(activeTabs[2])}>
+                <div className="tab3" onClick={() => this.props.onTabSelect(2)}>
                     <a>Artwork 3</a>
                 </div>
-                <div className="tab4" onClick={() => this.props.onTabSelect(3)} style={this.getStyle(activeTabs[3])}>
+                <div className="tab4" onClick={() => this.props.onTabSelect(3)}>
                     <a>Artwork 4</a>
                 </div>
             </div>
