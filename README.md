@@ -4,11 +4,8 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 <br>
 
-
-
-
   - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
-    - [underkrav](#underkrav1)
+    - [Generelt](#generelt)
   - [Teknologi](#teknologi)
   - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
@@ -26,12 +23,16 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 
 ### Innhold og funksjonalitet
-fasdfasdfdasf
-asdfasdfasdfasdf
+Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
+Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
+![alt text](https://github.com/IT2810/it2810-webutvikling-h18-prosjekt-2-gruppe--08/develop/public/content/scrnshoots/utklipp1.png)
+
 
 ### Teknologi
 asdfasdfas df
 fasdfasdfsdf
+
+
 
 
 
