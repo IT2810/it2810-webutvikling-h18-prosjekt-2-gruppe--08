@@ -6,7 +6,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
   - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
     - [Generelt](#generelt)
-    - [Filer](#filformater)
+    - [Filer](#filer)
     - [Rettigheter](#rettigheter)
   - [Teknologi](#teknologi)
   - [Testing](#s3-and-cloudfront)
@@ -31,8 +31,8 @@ Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
 ![..](https://i.imgur.com/tkhbhIp.png)
 
-#### Filformater
-Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. 
+#### Filer
+Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Vi har 3 kategorier med 4 filer hver, tilsammen 
 
 #### Rettigheter
 SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
@@ -58,11 +58,10 @@ Sang | Youtube-bruker | Link til video
 
 
 
-
-
 ### Teknologi
-asdfasdfas df
-fasdfasdfsdf
+
+#### REACT
+Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises. Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i klassen sin *state*. 
 
 
 
