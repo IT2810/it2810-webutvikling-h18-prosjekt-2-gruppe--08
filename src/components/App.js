@@ -28,6 +28,11 @@ class App extends Component {
         }
     }
 
+    // For å få opp en startutstilling
+    componentDidMount(){
+      this.tabUpdate(this.state.activeTab)
+    }
+
 
     getPictureOnTab() {
         let picturesURL = "/content/images/" + this.state.activeCategories[0]
@@ -50,10 +55,7 @@ class App extends Component {
         }
     }
 
-    // For å få opp en startutstilling
-    componentDidMount(){
-      this.tabUpdate(this.state.activeTab)
-    }
+
 
 
     getTextOnTab() {
