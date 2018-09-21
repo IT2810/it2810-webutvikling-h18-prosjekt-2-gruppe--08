@@ -21,10 +21,14 @@ Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 katego
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
 ![](https://i.imgur.com/tkhbhIp.png)
+
 <br>
+
 ### Filer
 Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen *12 + 12 + 3 = 27* kildefiler. 
+
 <br>
+
 ### Rettigheter
 SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
 <br>
@@ -102,8 +106,10 @@ Bredde over 775px | Bredde under 775px
 ![](https://i.imgur.com/vJoUuh4m.png) | ![](https://i.imgur.com/ELa4DrMm.png) ![](https://i.imgur.com/RKAmMaIm.png)
 
 <br>
+
 #### Bilder som skalerer
 Vi har lagt inn følgende kode i *style.css*-filen for at svg-bildene ikke skal ha en fast størrelse, men skalere opp og ned ettersom vinduet blir større og mindre: 
+
 ```css
 .home_container .picture svg {
   width: 500pt;
@@ -115,8 +121,10 @@ Vi har lagt inn følgende kode i *style.css*-filen for at svg-bildene ikke skal 
 }
 ```
 <br>
+
 #### Flytende/fleksibelt layout
-Ved at de ulike elementene på skjermen tar i bruk **flexbox**, noe som spesifiseres i *style.css*-filen, får websiden et flytende design. Med flexbox spesifiseres ikke størrelser i piksler, men i prosentdeler. Dette gjør at ettersom skjermstørrelsen endres, vil andelen som hvert element utgjør på skjermen forbli lik. I *home.js*-elementet, som viser bilde, tekst og lydspor bruker vi et **grid** som er delt inn i rader og kolonner. Etter litt testing fram og tilbake landet vi på en inndeling med 2 kolonner og 2 rader, der bilde-elementet utgjør første kolonne og begge to radene, tekst utgjør andre kolonne og første rad, og lydsporet utgjør andre kolonne og andre rad. Vi synes layouten så best ut med et relativt stort bilde, og vi valgte derfor i tillegg å sette første kolonne til å utgjøre 60% av den totale bredden.
+For å få et flytende design har vi tatt i bruk våde **CSS grid** og **flexbox**. Med disse to layout-systemene får websiden et flytende og fleksibelt design. Med flexbox og CSS grid spesifiseres ikke størrelser i piksler, men i prosentdeler. Dette gjør at ettersom skjermstørrelsen endres, vil andelen som hvert element utgjør på skjermen forbli lik.
+For side-elementene *Header*, *Tabs* og *Menu* har vi valgt å bruke flexbox. Dette fordi de ikke har andre elementer ved siden av seg, og derfor kan konsentrere seg om vertikal endring i skjermstørrelse, noe som flexbox egner seg bra til.  I *home*-sideelementet derimot, som viser bilde, tekst og lydspor bruker vi et CSS grid som er delt inn i rader og kolonner. Dette fordi vi ville ha bilde ved siden av tekst og lydspor, samtidig som vi ville ha lydspor under tekst. Da egner CSS grid seg perfekt, da det er et to-dimensjonalt system, som kan håndtere både rader og kolonner. Dette ønsket fikk vi så oppfylt gjennom et CSS grid med 2 kolonner og 2 rader. Bilde-elementet utgjør første kolonne og begge to radene, tekst utgjør andre kolonne og første rad, og lydsporet utgjør andre kolonne og andre rad.
 
 
 <br>
