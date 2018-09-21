@@ -12,7 +12,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
     - [React](#react)
     - [AJAX](#ajax)
     - [Responsive Web Design](#responsive-web-design)
-  - [Testing](#s3-and-cloudfront)
+  - [Testing](#testing)
   - [Surge](#surge)
 - [Advanced Configuration](#advanced-configuration)
 - [Troubleshooting](#troubleshooting)
@@ -68,7 +68,7 @@ Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du k
 
 
 #### AJAX
-Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Axios derimot tilbyr automatisk transformering av JSON-data. Man slipper dermed mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode, og får istedet json-objektet/ene returnert direkte. I kodesnutten under, dersom filen man laster inneholder en liste med json-objekter, vil *response.data* være listen, og man kan hente ut tekst fra det første JSON-objektet med ``` response.data[0].text ```, der *text* er en nøkkel i JSON-objektet. 
+Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Axios derimot tilbyr automatisk transformering av JSON-data. Man slipper dermed mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode, og får istedet json-objektet/ene returnert direkte. I kodesnutten under, dersom filen man laster inneholder en liste med json-objekter, vil ```response.data``` være listen, og man kan hente ut tekst fra det første JSON-objektet med ``` response.data[0].text ```, der ```text``` er en nøkkel i JSON-objektet. 
 
 ```js
 import axios from 'axios';
@@ -86,10 +86,15 @@ Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres b
 
 
 #### Responsive Web Design
-asdfasdfdf
-asdfasdfsadf
+Applikasjonen er implementer med responsive design, som betyr at applikasjonen tilpasser seg skjermens størrelse, orientering, samt plattform. Vi har brukt **Viewport** for å sikre at bredden er dynamisk og tilpasser seg enhetens størrelse. Med HTML5 kan man ta egendefinere viewport-en ved hjelp av ``` <meta> ```-tagen. Vi har lagt til følgende linje i vår *index.html*: 
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+```
+``` content="width=device-width ``` sørger for at bredden til websiden følger skjerm-bredden til enheten. Legg merke til at man ikke inkluderer noe lignende for høyden til websiden. Dette er fordi brukere er veldig vant med å scrolle vertikalt på både desktop- og mobil-enheter, men ikke horisontalt. 
 
 
+## Testing
 
 
 
