@@ -35,7 +35,7 @@ Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 ![..](https://i.imgur.com/tkhbhIp.png)
 
 #### Filer
-Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen 3*4 + 3*4 + 3 = 27 kildefiler. 
+Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen *12 + 12 + 3 = 27* kildefiler. 
 
 #### Rettigheter
 SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
@@ -68,8 +68,17 @@ Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du k
 
 
 #### AJAX
-Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Med axios derimot blir resultatene  automatisk henter JSON-data, så man slipper mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode. Axios returnerer json-objektet/ene direkte. 
+Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Axios derimot tilbyr automatisk transformering av JSON-data. Man slipper dermed mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode, og får istedet json-objektet/ene returnert direkte. I kodesnutten under, dersom filen man laster inneholder en liste med json-objekter, vil *response.data* være listen, og man kan hente ut tekst fra det første JSON-objektet med ``` response.data[0].text ```, der *text* er en nøkkel i JSON-objektet. 
 
+```js
+import axios from 'axios';
+axios.get(url)
+.then((response) => {
+    list_of_json_objects = response.data
+    first_json_object = response.data[0]
+    text_from_first_json_object = response.data[0].text
+  })
+```
 
 
 Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. Lyd-filer håndteres med HTML5 audio-tag, der url-en (path-en) til lydfilene lagres i en liste på samme måte som for bilde- og tekst-filene. Audio-tagen tar seg av selve lastingen av lydfilene for oss.
