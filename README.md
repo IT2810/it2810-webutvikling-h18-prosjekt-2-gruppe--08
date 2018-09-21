@@ -6,6 +6,8 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
   - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
     - [Generelt](#generelt)
+    - [Filer](#filformat)
+    - [Rettigheter] (#rettigheter)
   - [Teknologi](#teknologi)
   - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
@@ -23,10 +25,39 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 
 ### Innhold og funksjonalitet
+#### Generelt
 Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
-![..](https://i.imgur.com/Iz0d3En.png)
+![..](https://i.imgur.com/tkhbhIp.png)
+
+#### Filformater
+Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. 
+
+#### Rettigheter
+SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
+<br>
+Lydene er hentet fra Youtube fra følgende kilder:
+
+
+Sang | Youtube-bruker | Link til video
+:--- | :---: | :---
+*Black Sabbath - Paranoid* | Music Lyrics | [Klikk her](https://www.youtube.com/watch?v=FSGyXeRFLyE)
+*Dire Straits - Sultan of Swings* | Diablo4643 | [Klikk her](https://www.youtube.com/watch?v=0fAQhSRLQnM)
+*Chuck Berry - Johhny B. Goode* | osiris1822 | [Klikk her](https://www.youtube.com/watch?v=ZFo8-JqzSCM)
+*David Bowie - Rebel Rebel* | Alluurpo | [Klikk her](https://www.youtube.com/watch?v=U16Xg_rQZkA)
+*Ray Charled - Hit the road Jack* | martinchus78 | [Klikk her](https://www.youtube.com/watch?v=i8DRen60X10)
+*Condon Eddie - Love is just around the corner* | 2018 Chinatown | [Klikk her](https://www.youtube.com/watch?v=GYQkz0qQrg0)
+*Chu Berry and his Stompy Stevedores - Indiana* | Will Adams | [Klikk her](https://www.youtube.com/watch?v=7T9_vzkpfTo)
+*Frank Sinatra - Fly me to the moon* | RAYLOWESWINGS | [Klikk her](https://www.youtube.com/watch?v=mQR0bXO_yI8)
+*Savant - Sledgehammer* | SAVANT | [Klikk her](https://www.youtube.com/watch?v=h78kJFXbiUI)
+*Skrillex - Scary Monsters and Nice Sprites* | Skrillex | [Klikk her](https://www.youtube.com/watch?v=WSeNSzJ2-Jw)
+*Deadmau5 - Ghosts N stuff (Nero Remix)* | UKF Dubstep | [Klikk her](https://www.youtube.com/watch?v=3Gb3faOzvBk)
+*Savant - Ride like the wind* | SAVANT | [Klikk her](https://www.youtube.com/watch?v=uanrvY80DSM)
+
+
+
+
 
 
 ### Teknologi
