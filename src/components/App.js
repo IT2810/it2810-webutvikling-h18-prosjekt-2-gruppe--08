@@ -25,10 +25,11 @@ class App extends Component {
             activeAudios: ["", "", "", ""],
 
             // [picture, text, audio]
-            activeCategories: ["", "", ""]
-
+            // Velger noen startverdier
+            activeCategories: ["animal", "lyrics", "jazz"]
         }
     }
+
 
     getPictureOnTab() {
         console.log("Nå er jeg i getPictureOnTab");
@@ -54,9 +55,15 @@ class App extends Component {
         }
     }
 
+    // For å få opp en startutstilling
+    componentDidMount(){
+      this.tabUpdate(this.state.activeTab)
+    }
+
+
     getTextOnTab() {
         let textsURL = "/content/texts/" + this.state.activeCategories[1]
-            + ".json"
+            + ".json";
         // ---------- HENTER TEKST ------------------
         // Sjekker at vi ikke allerede har hentet tekst til denne taben
         console.log("Nå er jeg inne i getTextOnTab");
@@ -65,9 +72,9 @@ class App extends Component {
             axios.get(textsURL)
                 .then((response) => {
                     console.log("Henter tekst til tab" + this.state.activeTab);
-                    let texts = this.state.activeTexts
+                    let texts = this.state.activeTexts;
                     console.log(response.data);
-                    texts[this.state.activeTab] = response.data[this.state.activeTab].text
+                    texts[this.state.activeTab] = response.data[this.state.activeTab].text;
                     this.setState({
                         activeTexts: texts
                     })
@@ -84,12 +91,12 @@ class App extends Component {
     getAudioOnTab() {
         console.log("Nå er jeg i getAudioOnTab");
         let audioURL = "/content/audios/" + this.state.activeCategories[2]
-            + "/" + this.state.activeCategories[2] + (this.state.activeTab + 1) + ".mp3"
+            + "/" + this.state.activeCategories[2] + (this.state.activeTab + 1) + ".mp3";
         console.log(audioURL);
         // Sjekker at vi ikke allerede har hentet lyd til denne taben
         if (this.state.activeAudios[this.state.activeTab] === "") {
-            let audios = this.state.activeAudios
-            audios[this.state.activeTab] = audioURL
+            let audios = this.state.activeAudios;
+            audios[this.state.activeTab] = audioURL;
             this.setState({
                 activeAudios: audios
             })
@@ -134,11 +141,11 @@ class App extends Component {
     // Når en ny kategori velges kjøres denne funksjonen som oppdaterer staten
     categoryUpdate(catNo, category) {
         console.log("Nå er jeg i categoryUpdate og skal endre til " + category);
-        let categories = this.state.activeCategories
-        categories[catNo] = category
+        let categories = this.state.activeCategories;
+        categories[catNo] = category;
 
         // Når en ny kategori endres for et medie så tømmes de allerede innhentede mediene for den kategorien
-        this.clearData(catNo)
+        this.clearData(catNo);
 
         // Setter tabUpdate i en callback for å sikre at den kalles ETTER at staten er endret
         this.setState({

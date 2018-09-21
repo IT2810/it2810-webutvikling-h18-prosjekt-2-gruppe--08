@@ -1,13 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+# Artwork Randomizer - Gruppe 8
+Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i emnet IT2810 Webutvikling. Prosjektet gikk ut på å lage en online utstilling med brukerstyrte kombinasjoner av lyd, svg-grafikk og tekst. Applikasjonen er implementert som en *Single Page Application (SPA)* med React. Les mer om React [her](https://reactjs.org/).
 
-## HeiHeiHei....
+<br>
 
-  - [Netlify](#netlify)
-  - [Now](#now)
-  - [S3 and CloudFront](#s3-and-cloudfront)
+  - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
+    - [Generelt](#generelt)
+    - [Filer](#filer)
+    - [Rettigheter](#rettigheter)
+  - [Teknologi](#teknologi)
+    - [React](#react)
+    - [AJAX](#ajax)
+    - [Responsive Web Design](#responsive-web-design)
+  - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
 - [Advanced Configuration](#advanced-configuration)
 - [Troubleshooting](#troubleshooting)
@@ -19,6 +24,66 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Alternatives to Ejecting](#alternatives-to-ejecting)
 - [Something Missing?](#something-missing)
+
+
+
+## Innhold og funksjonalitet 
+#### Generelt
+Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
+Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
+
+![..](https://i.imgur.com/tkhbhIp.png)
+
+#### Filer
+Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen 3*4 + 3*4 + 3 = 27 kildefiler. 
+
+#### Rettigheter
+SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
+<br>
+Lydene er hentet fra Youtube fra følgende kilder:
+
+
+Sang | Youtube-bruker | Link til video
+:--- | :---: | :---
+*Black Sabbath - Paranoid* | Music Lyrics | [Klikk her](https://www.youtube.com/watch?v=FSGyXeRFLyE)
+*Dire Straits - Sultan of Swings* | Diablo4643 | [Klikk her](https://www.youtube.com/watch?v=0fAQhSRLQnM)
+*Chuck Berry - Johhny B. Goode* | osiris1822 | [Klikk her](https://www.youtube.com/watch?v=ZFo8-JqzSCM)
+*David Bowie - Rebel Rebel* | Alluurpo | [Klikk her](https://www.youtube.com/watch?v=U16Xg_rQZkA)
+*Ray Charled - Hit the road Jack* | martinchus78 | [Klikk her](https://www.youtube.com/watch?v=i8DRen60X10)
+*Condon Eddie - Love is just around the corner* | 2018 Chinatown | [Klikk her](https://www.youtube.com/watch?v=GYQkz0qQrg0)
+*Chu Berry and his Stompy Stevedores - Indiana* | Will Adams | [Klikk her](https://www.youtube.com/watch?v=7T9_vzkpfTo)
+*Frank Sinatra - Fly me to the moon* | RAYLOWESWINGS | [Klikk her](https://www.youtube.com/watch?v=mQR0bXO_yI8)
+*Savant - Sledgehammer* | SAVANT | [Klikk her](https://www.youtube.com/watch?v=h78kJFXbiUI)
+*Skrillex - Scary Monsters and Nice Sprites* | Skrillex | [Klikk her](https://www.youtube.com/watch?v=WSeNSzJ2-Jw)
+*Deadmau5 - Ghosts N stuff (Nero Remix)* | UKF Dubstep | [Klikk her](https://www.youtube.com/watch?v=3Gb3faOzvBk)
+*Savant - Ride like the wind* | SAVANT | [Klikk her](https://www.youtube.com/watch?v=uanrvY80DSM)
+
+
+<br>
+
+## Teknologi
+
+#### React
+Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises.
+
+
+#### AJAX
+Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Med axios derimot blir resultatene  automatisk henter JSON-data, så man slipper mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode. Axios returnerer json-objektet/ene direkte. 
+
+
+
+Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. Lyd-filer håndteres med HTML5 audio-tag, der url-en (path-en) til lydfilene lagres i en liste på samme måte som for bilde- og tekst-filene. Audio-tagen tar seg av selve lastingen av lydfilene for oss.
+
+
+
+#### Responsive Web Design
+asdfasdfdf
+asdfasdfsadf
+
+
+
+
+
 
 ## Updating to New Releases
 

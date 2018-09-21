@@ -55,10 +55,8 @@ class Home extends Component {
                         return <div key={key}>{i}</div>;
                     })}
                 </div>
-
                 <div className="audio">
                     <audio src={this.props.audio} type="audio/mp3" controls/>
-
                 </div>
 
             </div>
