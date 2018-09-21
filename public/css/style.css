@@ -57,6 +57,7 @@ div {
     border: 1px solid var(--pink2);
     border-radius: 15px;
     margin: 2% ;
+
 }
 
 .tab1, .tab2, .tab3, .tab4, a {
@@ -67,11 +68,14 @@ div {
     text-align: center;
 }
 
+
+
 .tabs_container div:hover{
     background-color: var(--pink);
     cursor: pointer;
     border-radius: 15px;
 }
+
 
 
 
@@ -151,7 +155,7 @@ div {
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 775px) {
 
 
     .menu_container {
