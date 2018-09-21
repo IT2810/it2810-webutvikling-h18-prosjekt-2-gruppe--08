@@ -96,6 +96,7 @@ Applikasjonen er implementer med responsive design, som betyr at applikasjonen t
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 ```
 ``` content="width=device-width ``` sørger for at bredden til websiden følger skjerm-bredden til enheten. Legg merke til at man ikke inkluderer noe lignende for høyden til websiden. Dette er fordi brukere er veldig vant med å scrolle vertikalt på både desktop- og mobil-enheter, men ikke horisontalt. 
+
 <br>
 
 #### Media-queries
