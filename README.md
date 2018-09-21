@@ -32,7 +32,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
-![..](https://i.imgur.com/tkhbhIp.png)
+![](https://i.imgur.com/tkhbhIp.png)
 
 ### Filer
 Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen *12 + 12 + 3 = 27* kildefiler. 
@@ -106,11 +106,32 @@ Vi har brukt **media-queries** for å tillate at innholdet på skjermen å endre
     ...
 }
 ```
-Her spesifiseres det at når bredden på skjermen kommer under 775px skal websiden endre layout. Når dette skjer har vi valgt å endre fra at bildet står ved siden av tekst og lydspor, og at kategoriene står side om side, til at bilde havnet øverst, deretter tekst, deretter lydsporet, deretter hver kategori. Akkuratt 775px har vi valgt fordi det er omtrent ved denne bredden at teksten begynner å overlappe bilde. De to bildene under illustrerer denne endringen: 
+Her spesifiseres det at når bredden på skjermen kommer under 775px skal websiden endre layout. Når dette skjer har vi valgt å endre fra at bildet står ved siden av tekst og lydspor, og at kategoriene står side om side, til at bilde havnet øverst, deretter tekst, deretter lydsporet, deretter hver kategori. Akkuratt 775px har vi valgt fordi det er omtrent ved denne bredden at teksten begynner å overlappe bilde. Figuren under illustrerer denne endringen: 
 
-![..](https://i.imgur.com/vJoUuh4.png) 
+Bredde over 775px | Bredde under 775px 
+:--- | :---
+![](https://i.imgur.com/vJoUuh4m.png) | ![](https://i.imgur.com/ELa4DrMm.png) ![](https://i.imgur.com/RKAmMaIm.png)
 
 
+#### Bilder som skalerer
+Vi har lagt inn følgende kode i *style.css*-filen for at svg-bildene våres ikke skal ha en fast størrelse, men skalere opp og ned ettersom vinduet blir større og mindre: 
+```css
+.home_container .picture svg {
+  width: 500pt;
+  height: 300pt;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+```
+
+#### Flytende/fleksibelt layout
+Ved at de ulike elementene på skjermen tar i bruk **flexbox**, noe som spesifiseres i *style.css*-filen, får websiden et flytende design. Med flexbox spesifiseres ikke størrelser i piksler, men i prosentdeler. Dette gjør at ettersom skjermstørrelsen endres, vil andelen som hvert element utgjør på skjermen forbli lik. I tillegg, som vi har sett, gjør media-queries websiden vår fleksibel, som altså vil si at det finnes flere versjoner av layouten som blir vist basert på skjermstørrelsen. 
+
+
+
+<br>
 
 ## Testing
 
