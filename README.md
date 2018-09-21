@@ -1,5 +1,5 @@
 
-## Artwork Randomizer - Gruppe 8
+# Artwork Randomizer - Gruppe 8
 Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i emnet IT2810 Webutvikling. Prosjektet gikk ut på å lage en online utstilling med brukerstyrte kombinasjoner av lyd, svg-grafikk og tekst. Applikasjonen er implementert som en *Single Page Application (SPA)* med React. Les mer om React [her](https://reactjs.org/).
 
 <br>
@@ -27,7 +27,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 
 
-### Innhold og funksjonalitet
+## Innhold og funksjonalitet 
 #### Generelt
 Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
@@ -59,9 +59,9 @@ Sang | Youtube-bruker | Link til video
 *Savant - Ride like the wind* | SAVANT | [Klikk her](https://www.youtube.com/watch?v=uanrvY80DSM)
 
 
+<br>
 
-
-### Teknologi
+## Teknologi
 
 #### React
 Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises.
