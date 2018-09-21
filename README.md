@@ -9,6 +9,9 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
     - [Filer](#filer)
     - [Rettigheter](#rettigheter)
   - [Teknologi](#teknologi)
+    - [React](#react)
+    - [AJAX](#ajax)
+    - [Responsive Web Design](#responsive-web-design)
   - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
 - [Advanced Configuration](#advanced-configuration)
@@ -60,8 +63,18 @@ Sang | Youtube-bruker | Link til video
 
 ### Teknologi
 
-#### REACT
-Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises. Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i klassen sin *state*. 
+#### React
+Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises.
+
+
+#### AJAX
+Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst og lyd. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. 
+
+
+#### Responsive Web Design
+asdfasdfdf
+asdfasdfsadf
+
 
 
 
