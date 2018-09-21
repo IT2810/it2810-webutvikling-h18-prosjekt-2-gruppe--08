@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Header extends Component {
 
 
     render() {
-        return(
+        return (
             <div className="header">
                 <h1> ARTWORK RANDOMIZER </h1>
             </div>

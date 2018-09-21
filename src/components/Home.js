@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Home extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
     }
@@ -29,37 +29,34 @@ class Home extends Component {
         var child = div.firstChild;
         console.log(child);
         return child;
-      }
+    }
 
-      // For å gjøre om responseteksten fra ajax-kallet til svg
-      createMarkup(){
-          return {__html: this.props.picture};
-      }
+    // For å gjøre om responseteksten fra ajax-kallet til svg
+    createMarkup() {
+        return {__html: this.props.picture};
+    }
 
-      // playAudio(audio_src){
-      //   let audio = new Audio(audio_src)
-      //   audio.play()
-      // }
-
+    // playAudio(audio_src){
+    //   let audio = new Audio(audio_src)
+    //   audio.play()
+    // }
 
 
     render() {
-      console.log("Nå er jeg i render() i Home.js")
+        console.log("Nå er jeg i render() i Home.js")
 
-        return(
+        return (
             <div className="home_container">
                 <div className="picture"
-                  dangerouslySetInnerHTML={this.createMarkup()} />
+                     dangerouslySetInnerHTML={this.createMarkup()}/>
 
                 <div className="text">
-                  {this.props.text.split("\n").map((i,key) => {
-                    return <div key={key}>{i}</div>;
-                  })}
+                    {this.props.text.split("\n").map((i, key) => {
+                        return <div key={key}>{i}</div>;
+                    })}
                 </div>
-
-                <div className="audio" >
-                <audio  src= {this.props.audio} type="audio/mp3" controls />
-
+                <div className="audio">
+                    <audio src={this.props.audio} type="audio/mp3" controls/>
                 </div>
 
             </div>
