@@ -140,6 +140,7 @@ For side-elementene *Header*, *Tabs* og *Menu* har vi valgt å bruke flexbox. De
 <br>
 
 ## Testing
+Videoen under demonstrerer hvordan websiden fungerer når man endrer skjermstørrelsen: 
 
 ![](https://media.giphy.com/media/yuRcJ05GxA3tfNZyl8/giphy.gif)
 
