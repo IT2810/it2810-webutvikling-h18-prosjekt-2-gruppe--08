@@ -28,16 +28,16 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 
 ## Innhold og funksjonalitet 
-#### Generelt
+### Generelt
 Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
 ![..](https://i.imgur.com/tkhbhIp.png)
 
-#### Filer
+### Filer
 Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen *12 + 12 + 3 = 27* kildefiler. 
 
-#### Rettigheter
+### Rettigheter
 SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
 <br>
 Lydene er hentet fra Youtube fra følgende kilder:
@@ -63,11 +63,11 @@ Sang | Youtube-bruker | Link til video
 
 ## Teknologi
 
-#### React
+### React
 Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises.
 
 
-#### AJAX
+### AJAX
 Vi har brukt Javascript-biblioteket **axios** for lasting av data. Vi har valgt axios fordi det støtter det løftebaserte API-et som kommer med ES6 og er fordelaktig over *.fetch()*-metoden. Fetch bruker en to-stegs prosess når det håndterer JSON-objekter. Etter den initielle forespørselen må man kalle *.json()*-metoden for å motta det faktiske objektet. Axios derimot tilbyr automatisk transformering av JSON-data. Man slipper dermed mellomleddene med å sende resultatene fra http-forespørselen til en *json()*-metode, og får istedet json-objektet/ene returnert direkte. I kodesnutten under, dersom filen man laster inneholder en liste med json-objekter, vil ```response.data``` være listen, og man kan hente ut tekst fra det første JSON-objektet med ``` response.data[0].text ```, der ```text``` er en nøkkel i JSON-objektet. 
 
 ```js
@@ -85,13 +85,31 @@ Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres b
 
 
 
-#### Responsive Web Design
-Applikasjonen er implementer med responsive design, som betyr at applikasjonen tilpasser seg skjermens størrelse, orientering, samt plattform. Vi har brukt **Viewport** for å sikre at bredden er dynamisk og tilpasser seg enhetens størrelse. Med HTML5 kan man ta egendefinere viewport-en ved hjelp av ``` <meta> ```-tagen. Vi har lagt til følgende linje i vår *index.html*: 
+### Responsive Web Design
+Applikasjonen er implementer med responsive design, som betyr at applikasjonen tilpasser seg skjermens størrelse, orientering, samt plattform. I [test-delen](#testing) kan du se resultatet. Under kommer en beskrivelse av hvordan vi har brukt ulike "Responsive design"-elementer og teknikker for å oppnå et responsivt web design.
+
+#### Viewport
+ Vi har brukt **Viewport** for å sikre at bredden er dynamisk og tilpasser seg enhetens størrelse. Med HTML5 kan man ta egendefinere viewport-en ved hjelp av ``` <meta> ```-tagen. Vi har lagt til følgende linje i *index.html*-filen: 
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 ```
 ``` content="width=device-width ``` sørger for at bredden til websiden følger skjerm-bredden til enheten. Legg merke til at man ikke inkluderer noe lignende for høyden til websiden. Dette er fordi brukere er veldig vant med å scrolle vertikalt på både desktop- og mobil-enheter, men ikke horisontalt. 
+
+
+#### Media-queries
+Vi har brukt **media-queries** for å tillate at innholdet på skjermen å endre/tilpasse seg ettersom skjermoppløsningen endres. I *style.css*-filen  har vi lagt til følgende: 
+
+```css 
+@media screen and (max-width: 775px) {
+    ...
+    ...
+}
+```
+Her spesifiseres det at når bredden på skjermen kommer under 775px skal websiden endre layout. Når dette skjer har vi valgt å endre fra at bildet står ved siden av tekst og lydspor, og at kategoriene står side om side, til at bilde havnet øverst, deretter tekst, deretter lydsporet, deretter hver kategori. Akkuratt 775px har vi valgt fordi det er omtrent ved denne bredden at teksten begynner å overlappe bilde. De to bildene under illustrerer denne endringen: 
+
+![..](https://i.imgur.com/vJoUuh4.png) 
+
 
 
 ## Testing
