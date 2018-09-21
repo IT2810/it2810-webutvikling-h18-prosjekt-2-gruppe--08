@@ -4,9 +4,6 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 <br>
 
-
-
-
   - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
     - [underkrav1](#underkrav)
   - [Teknologi](#teknologi)
@@ -33,7 +30,7 @@ asdfasdfasdfasdf
 asdfasdfas df
 fasdfasdfsdf
 
-### 'underkrav' underkrav1
+### Underkrav1
 
 
 
