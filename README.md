@@ -35,7 +35,7 @@ Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 ![..](https://i.imgur.com/tkhbhIp.png)
 
 #### Filer
-Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Vi har 3 kategorier med 4 filer hver, tilsammen 
+Bildene er svg-filer (xml-data), lydene er mp3-filer, og tekstene er lagret i json-objekter. Hvert lydspor er lagret i en egen mp3-fil, hvert bilde er lagret i en egen svg-fil, mens tekstene er lagret i json-filer der hver json-fil hører til én kategori og består av 4 tekster. Det gir tilsammen 3*4 + 3*4 + 3 = 27 kildefiler. 
 
 #### Rettigheter
 SVG-filene er hentet fra [publicdomainvectors.org](https://publicdomainvectors.org/).
@@ -68,7 +68,7 @@ Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du k
 
 
 #### AJAX
-Vi har brukt 
+Vi har brukt **axios** for lasting av data. Axios er en løftebasert HTTP-klient som fungerer både i nettleseren og i et node.js
 Filene lastes(hentes) kun når de benyttes. Når et bilde er hentet inn lagres bilde-filen i en liste i App.js sin *state* på en indeks som korresponderer til tab-vinduet som bildet vises i. Bytter man til neste tab vil et nytt bilde hentes inn og lagres på samme måte. Dersom man så blar tilbake til en tab der et bilde allerede er lastet inn, vil App.js merke dette ved at liste-elementet ikke er tomt og unngår dermed å hente et bilde på nytt. Det samme gjelder for tekst. Slik sikrer vi at innholdet lagres på klienten og ikke lastes flere ganger hvis en bruker blar frem og tilbake i utstillingen. Lyd-filer håndteres med HTML5 audio-tag, der url-en (path-en) til lydfilene lagres i en liste på samme måte som for bilde- og tekst-filene. Audio-tagen tar seg av selve lastingen av lydfilene for oss.
 
 
