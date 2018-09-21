@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-
+/*
 Tabs.propTypes = {
     activeTabs: PropTypes.array.isRequired,
     onTabSelect: PropTypes.func.isRequired
 };
 
-
+*/
 class Tabs extends Component {
 
     getStyle(activeBool) {
-        return activeBool === true ? {'background-color': 'pink'} : {'background-color': 'white'};
+        return activeBool === true ? {'backgroundColor': 'pink'} : {'backgroundColor': 'white'};
     }
 
 
