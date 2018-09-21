@@ -56,7 +56,16 @@ Sang | Youtube-bruker | Link til video
 ## Teknologi
 
 ### React
-Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). **App.js** er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises.
+Applikasjonen er basert på React og JSX. VI har brukt ES6 (Javascript) som du kan lese mer om [her](https://www.w3schools.com/js/js_es6.asp). *App.js* er hovedklassen i applikasjonen. Den holder styr på hvilket tab-vindu som er valgt, hvilke kategorier som er valgt, og hvilke bilder, tekster og lyder som skal vises. Utifra oppgaveteksten synes vi følgende inndeling av komponenter er et naturlig og fornuftig valg:
+
+ - *header.js* - overskrift og den øverste delen av applikasjonen
+ - *tabs.js* - de 4 tab-ene
+ - *home.js* - bilde, tekst og lyd
+ - *menu.js* - kategoriene
+ - *footer.js* - nederste del av applikasjonen
+
+Alle disse komponentene, foruten om *header.js* og *footer.js*, kommuniserer fram og tilbake med *App.js*.
+
 <br>
 
 ### AJAX
