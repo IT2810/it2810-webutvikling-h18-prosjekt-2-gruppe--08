@@ -8,7 +8,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 
   - [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
-    - ['underkrav' underkrav1](#underkrav)
+    - [underkrav1](#underkrav)
   - [Teknologi](#teknologi)
   - [Testing](#s3-and-cloudfront)
   - [Surge](#surge)
