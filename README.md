@@ -17,7 +17,7 @@ Vi er 3 studenter på NTNU som i september 2018 har gjennomført et prosjekt i e
 
 ## Innhold og funksjonalitet 
 ### Generelt
-Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises som i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
+Brukeren kan velge blant 3 kategorier av bilder, 3 kategorier av lyd og 3 kategorier av tekst. Basert på disse valgene genereres en utstilling med 4 kombinasjoner av ett bilde, én tekst og én lyd. Hver kombinasjon vises i et eget tab-display som gjør det enkelt for brukeren å bla mellom de 4 kombinasjonene. Ved endring av kategorivalg genereres en ny utstilling. 
 Et utklipp som viser hvordan vi har valgt at layouten skal være ser dere under:
 
 ![](https://i.imgur.com/tkhbhIp.png)
