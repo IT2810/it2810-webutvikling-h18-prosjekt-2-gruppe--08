@@ -25,9 +25,14 @@ class App extends Component {
             activeAudios: ["", "", "", ""],
 
             // [picture, text, audio]
-            activeCategories: ["", "", ""]
-
+            // Velger noen startverdier
+            activeCategories: ["animal", "lyrics", "jazz"]
         }
+    }
+
+    // For å få opp en startutstilling
+    componentDidMount(){
+      this.tabUpdate(this.state.activeTab)
     }
 
     getPictureOnTab(){
