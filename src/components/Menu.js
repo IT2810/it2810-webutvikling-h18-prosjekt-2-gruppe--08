@@ -1,20 +1,12 @@
 import React, {Component,} from 'react';
 
-/*
-const picture =  ["nature", "city", "animals"] ;
-const text = ["poems", "limericks", "Song lyricss"] ;
-const audio = ["rock", "dubstep", "jazz"] ;
-*/
-
 class Menu extends Component {
-
 
     constructor(props) {
         super(props);
     }
 
     render() {
-        console.log("Nå er jeg i render() i Menu.js");
         return (
             <div className="menu_container">
                 {/*-- ------------------------------- PICTURE ----------------------------------------------- */}
@@ -91,9 +83,7 @@ class Menu extends Component {
                                }}/>
                         Jazz
                     </p>
-
                 </div>
-
             </div>
         )
     }

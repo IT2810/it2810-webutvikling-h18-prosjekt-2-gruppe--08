@@ -69,16 +69,11 @@ div {
 }
 
 
-
-
 .tabs_container div:hover{
     background-color: var(--pink);
     cursor: pointer;
     border-radius: 15px;
 }
- 
-
-
 
 
 /* =========== HOME ============ */
@@ -157,7 +152,6 @@ div {
 
 
 /* =========== MEDIA QUERIES ============ */
-
 
 
 
