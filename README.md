@@ -141,7 +141,7 @@ For side-elementene *Header*, *Tabs* og *Menu* har vi valgt å bruke flexbox. De
 
 ## Testing
 
-
+![](https://media.giphy.com/media/yuRcJ05GxA3tfNZyl8/giphy.gif)
 
 
 
